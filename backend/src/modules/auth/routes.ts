@@ -5,6 +5,11 @@ const router = Router();
 
 router.post('/login', async (req: Request, res: Response): Promise<void> => {
   try {
+    if (!req.body) {
+      res.status(400).json({ error: 'Request body is missing. Did you forget Content-Type: application/json?' });
+      return;
+    }
+
     const { username, password } = req.body;
 
     if (!username || !password) {

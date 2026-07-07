@@ -3,7 +3,7 @@
 -- Run this file in psql or pgAdmin to create the entire DB
 --
 -- Usage:
---   psql -U postgres -d RestaurantSystem -f RestaurantSystem.sql
+--   psql -U postgres -d restaurantsystem -f RestaurantSystem.sql
 --
 -- Note: Create the database first:
 --   CREATE DATABASE "RestaurantSystem";
@@ -214,16 +214,16 @@ COMMENT ON TABLE revenues IS
 -- ────────────────────────────────────────────────────────────
 INSERT INTO users (username, password, role) VALUES
   ('admin',
-   '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+   '$2a$10$4IPwgOk.tZEfcVVSZAeOQeNKzFFnjf7VktKJraCBaMTVM8dMWD31a',
    'admin'),
   ('manager',
-   '$2a$10$mQmHDZUVOCZEGEtbzEXJDOZBRpGkUSWk8BFGHhh/dHt4I6H0vS3d.',
+   '$2a$10$X3yvplj1DwCV6LV/UJSUr.szqmSwr8eZCt21R3pGeIxqMGymFBFKK',
    'manager'),
   ('server',
-   '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy',
+   '$2a$10$DqsWo1l/x804FhZZy5qKV.WsNUbWmkGdqvd40gv94kc5vDr98W4uK',
    'server'),
   ('chef',
-   '$2a$10$TKh8H1.PfQ0A32cv.XKDQ.6ghcSKwmvFDp7LpCixHMKFvbVXTMH.e',
+   '$2a$10$vCUOy.UurXNgu2XPk3U6nuQ0CoQh9p8m77CQZEmYq1nJtXepAhmxK',
    'chef'),
   ('cashier',
    '$2a$10$.DinCTJrKwh3L8cL.x2eBeD/4tGKYUWkUoDh3vra48XFkkK.CFN2.',
