@@ -18,7 +18,16 @@ export const createKitchenTicket = async (
 
 export const getActiveTickets = async () => {
   const result = await query(
-    `SELECT * FROM kitchen_tickets 
+    `SELECT 
+       id, 
+       order_id AS "orderId", 
+       table_id AS "tableId", 
+       combo_name AS "comboName", 
+       quantity, 
+       notes, 
+       status, 
+       created_at AS "createdAt"
+     FROM kitchen_tickets 
      WHERE status IN ('pending', 'cooking') 
      ORDER BY created_at ASC`
   );
@@ -30,7 +39,7 @@ export const updateTicketStatus = async (ticketId: string, status: string) => {
     `UPDATE kitchen_tickets 
      SET status = $1 
      WHERE id = $2 
-     RETURNING *`,
+     RETURNING id, order_id AS "orderId", table_id AS "tableId", combo_name AS "comboName", quantity, notes, status, created_at AS "createdAt"`,
     [status, ticketId]
   );
   return result.rows[0];

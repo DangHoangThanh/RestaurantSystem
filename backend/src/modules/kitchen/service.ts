@@ -14,7 +14,7 @@ export const finishTicket = async (ticketId: string) => {
   const updated = await updateTicketStatus(ticketId, 'done');
   if (updated) {
     eventBus.emit(EventName.ORDER_COMPLETED, {
-      orderId: updated.order_id
+      orderId: updated.orderId
     });
   }
   return updated;

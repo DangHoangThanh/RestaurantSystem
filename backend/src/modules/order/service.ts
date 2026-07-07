@@ -19,8 +19,8 @@ export const placeOrder = async (tableId: string, comboId: string, quantity: num
 
   eventBus.emit(EventName.ORDER_CREATED, {
     id: order.id,
-    tableId: order.table_id,
-    comboId: order.combo_id,
+    tableId: order.tableId,
+    comboId: order.comboId,
     quantity: order.quantity,
     notes: order.notes,
     status: order.status

@@ -37,7 +37,7 @@ export const createOrder = async (tableId: string, comboId: string, comboName: s
   const result = await query(
     `INSERT INTO orders (table_id, combo_id, combo_name, quantity, notes, total_price, status)
      VALUES ($1, $2, $3, $4, $5, $6, 'pending')
-     RETURNING *`,
+     RETURNING id, table_id AS "tableId", combo_id AS "comboId", combo_name AS "comboName", quantity, notes, total_price AS "totalPrice", status, created_at AS "createdAt"`,
     [tableId, comboId, comboName, quantity, notes, totalPrice]
   );
   return result.rows[0];
@@ -49,7 +49,10 @@ export const updateOrderStatus = async (orderId: string, status: string) => {
 
 export const getOrdersByTable = async (tableId: string) => {
   const result = await query(
-    'SELECT * FROM orders WHERE table_id = $1 ORDER BY created_at DESC',
+    `SELECT id, table_id AS "tableId", combo_id AS "comboId", combo_name AS "comboName", quantity, notes, total_price AS "totalPrice", status, created_at AS "createdAt" 
+     FROM orders 
+     WHERE table_id = $1 
+     ORDER BY created_at DESC`,
     [tableId]
   );
   return result.rows;

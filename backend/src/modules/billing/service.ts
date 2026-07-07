@@ -11,8 +11,8 @@ export const payBill = async (billId: string) => {
   if (bill) {
     eventBus.emit(EventName.PAYMENT_COMPLETED, {
       billId: bill.id,
-      tableId: bill.table_id,
-      amount: bill.total_amount
+      tableId: bill.tableId,
+      amount: bill.totalAmount
     });
   }
   return bill;
@@ -23,7 +23,7 @@ export const initBillingSubscribers = () => {
     try {
       const order = await getOrderDetails(payload.orderId);
       if (order) {
-        await createBill(payload.orderId, order.table_id, order.total_price);
+        await createBill(payload.orderId, order.tableId, order.totalPrice);
       }
     } catch (err) {
       console.error('Error creating bill', err);
