@@ -16,7 +16,7 @@ router.get('/tickets', authorizeRole(['chef', 'manager', 'admin']), async (req, 
 router.patch('/:id/start', authorizeRole(['chef', 'manager', 'admin']), async (req, res) => {
   try {
     const { id } = req.params;
-    const ticket = await startTicket(id);
+    const ticket = await startTicket(id as string);
     if (!ticket) {
       return res.status(404).json({ error: 'Ticket not found' });
     }
@@ -29,7 +29,7 @@ router.patch('/:id/start', authorizeRole(['chef', 'manager', 'admin']), async (r
 router.patch('/:id/done', authorizeRole(['chef', 'manager', 'admin']), async (req, res) => {
   try {
     const { id } = req.params;
-    const ticket = await finishTicket(id);
+    const ticket = await finishTicket(id as string);
     if (!ticket) {
       return res.status(404).json({ error: 'Ticket not found' });
     }

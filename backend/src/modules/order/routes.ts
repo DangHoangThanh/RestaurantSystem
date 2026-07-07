@@ -22,7 +22,7 @@ router.patch('/menu/:id/availability', authorizeRole(['admin', 'manager']), asyn
       res.status(400).json({ error: 'isAvailable must be a boolean' });
       return;
     }
-    const updated = await setMenuAvailability(id, isAvailable);
+    const updated = await setMenuAvailability(id as string, isAvailable);
     if (!updated) {
       res.status(404).json({ error: 'Menu item not found' });
       return;
@@ -52,7 +52,7 @@ router.post('/orders', authorizeRole(['server', 'manager', 'admin']), async (req
 router.get('/orders/table/:tableId', authorizeRole(['server', 'cashier', 'manager', 'admin']), async (req: Request, res: Response) => {
   try {
     const { tableId } = req.params;
-    const orders = await fetchTableOrders(tableId);
+    const orders = await fetchTableOrders(tableId as string);
     res.json(orders);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });

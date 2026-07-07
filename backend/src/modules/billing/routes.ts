@@ -7,7 +7,7 @@ const router = Router();
 router.get('/:tableId', authorizeRole(['cashier', 'manager', 'admin']), async (req, res) => {
   try {
     const { tableId } = req.params;
-    const bill = await fetchPendingBill(tableId);
+    const bill = await fetchPendingBill(tableId as string);
     if (!bill) {
       return res.status(404).json({ error: 'No pending bill found for this table' });
     }
@@ -20,7 +20,7 @@ router.get('/:tableId', authorizeRole(['cashier', 'manager', 'admin']), async (r
 router.post('/:billId/pay', authorizeRole(['cashier', 'manager', 'admin']), async (req, res) => {
   try {
     const { billId } = req.params;
-    const bill = await payBill(billId);
+    const bill = await payBill(billId as string);
     if (!bill) {
       return res.status(404).json({ error: 'Bill not found' });
     }

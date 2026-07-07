@@ -22,7 +22,7 @@ router.patch('/:name', authorizeRole(['manager', 'admin']), async (req, res) => 
       return res.status(400).json({ error: 'Quantity must be a number' });
     }
     
-    const updated = await setInventory(name, quantity);
+    const updated = await setInventory(name as string, quantity);
     if (!updated) {
       return res.status(404).json({ error: 'Ingredient not found' });
     }
